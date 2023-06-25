@@ -1,9 +1,7 @@
+import Search from './components/Search.tsx';
 
 function App() {
-
-  return (
-<div>dd</div>
-  );
+  return <Search />;
 }
 
 export default App;
