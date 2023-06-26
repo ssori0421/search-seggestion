@@ -3,27 +3,35 @@ import getDisease from '../services/getDisease.ts';
 import { IDisease } from '../types/disease.ts';
 
 function Search() {
-  const [searchDisease, setSearchDisease] = useState<string>('');
+  const [searchInput, setSearchInput] = useState<string>('');
   const [suggestDiseaseList, setSuggestDiseaseList] = useState<IDisease[]>();
+  const [debouncedInput, setDebouncedInput] = useState<string>('');
 
   const onChangeInputDisease = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setSearchDisease(value);
+    setSearchInput(value);
   };
 
   const getDiseaseList = useCallback(async () => {
-    if (searchDisease === '') {
+    if (debouncedInput === '') {
       setSuggestDiseaseList(undefined);
       return;
     }
     try {
-      const data = await getDisease(searchDisease);
+      const data = await getDisease(debouncedInput);
       setSuggestDiseaseList(data);
     } catch (error) {
       console.error(error);
       setSuggestDiseaseList(undefined);
     }
-  }, [searchDisease]);
+  }, [debouncedInput]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedInput(searchInput);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [searchInput]);
 
   useEffect(() => {
     getDiseaseList();
@@ -32,6 +40,11 @@ function Search() {
   return (
     <div>
       <input onChange={onChangeInputDisease} />
+      <ul>
+        {suggestDiseaseList?.map((disease: IDisease) => (
+          <li>{disease.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
