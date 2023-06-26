@@ -1,37 +1,32 @@
 import { useCallback, useEffect, useState } from 'react';
 import getDisease from '../services/getDisease.ts';
 import { IDisease } from '../types/disease.ts';
+import useDebounce from '../hooks/useDebounce.ts';
 
 function Search() {
   const [searchInput, setSearchInput] = useState<string>('');
   const [suggestDiseaseList, setSuggestDiseaseList] = useState<IDisease[]>();
-  const [debouncedInput, setDebouncedInput] = useState<string>('');
 
   const onChangeInputDisease = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchInput(value);
   };
 
+  const debounceInput = useDebounce(searchInput);
+
   const getDiseaseList = useCallback(async () => {
-    if (debouncedInput === '') {
+    if (debounceInput === '') {
       setSuggestDiseaseList(undefined);
       return;
     }
     try {
-      const data = await getDisease(debouncedInput);
+      const data = await getDisease(debounceInput);
       setSuggestDiseaseList(data);
     } catch (error) {
       console.error(error);
       setSuggestDiseaseList(undefined);
     }
-  }, [debouncedInput]);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setDebouncedInput(searchInput);
-    }, 500);
-    return () => clearTimeout(timeoutId);
-  }, [searchInput]);
+  }, [debounceInput]);
 
   useEffect(() => {
     getDiseaseList();
