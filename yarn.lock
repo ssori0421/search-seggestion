@@ -436,6 +436,20 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@tanstack/query-core@4.29.17":
+  version "4.29.17"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.29.17.tgz#bbef3a30190732ae3554187702f6e34c5caaefd8"
+  integrity sha512-iDbO8yZOpm1lqgq6L8mpxGbKaoiyZSjthxEB3WGU7mNPYss9q4H3Q67+e2xXGwkemEVmtEX/WwvtFitrvVU8TA==
+
+"@tanstack/react-query@^4.29.17":
+  version "4.29.17"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.29.17.tgz#bfd5da849bb7fd1b66eb9d47853ee030864a435e"
+  integrity sha512-udOy/jgqiBHBAP93YPAU3QoVYO+Rtx9HT/10xGDQzC8iQU/wIxcIaT/usX+1NSzoUFYU5hUcPaNErPWZnR7XgA==
+  dependencies:
+    "@tanstack/query-core" "4.29.17"
+    client-only "0.0.1"
+    use-sync-external-store "^1.2.0"
+
 "@types/json-schema@^7.0.9":
   version "7.0.12"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.12.tgz#d70faba7039d5fca54c83c7dbab41051d2b6f6cb"
@@ -777,6 +791,11 @@ chalk@^4.0.0:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
+
+client-only@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/client-only/-/client-only-0.0.1.tgz#38bba5d403c41ab150bff64a95c85013cf73bca1"
+  integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -2345,6 +2364,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
+  integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
 vite@^4.3.9:
   version "4.3.9"
