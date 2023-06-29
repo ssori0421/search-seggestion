@@ -9,12 +9,7 @@ function Search() {
   const [searchInput, setSearchInput] = useState<string>('');
   const debounceInput = useDebounce(searchInput);
 
-  const {
-    data: suggestDiseaseList,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<IDisease[], Error>(
+  const { data: suggestDiseaseList } = useQuery<IDisease[], Error>(
     ['diseases', debounceInput],
     () => getDisease(debounceInput) as Promise<IDisease[]>,
     {
@@ -31,16 +26,34 @@ function Search() {
 
   return (
     <div className="searchContainer">
-      <input onChange={onChangeInputDisease} />
-      {isLoading && <div>Loading...</div>}
-      {isError && <div>Error: {error.message}</div>}
-      {suggestDiseaseList && (
-        <ul>
-          {suggestDiseaseList?.map((disease: IDisease) => (
-            <li key={disease.id}>{disease.name}</li>
-          ))}
-        </ul>
-      )}
+      <div className="searchWrapper">
+        <h2 className="title">
+          국내 모든 임상시험 검색하고 <br />
+          온라인으로 참여하기
+        </h2>
+        <div className="searchInputContainer">
+          <div className="searchInutWrapper">
+            <input
+              className="searchInput"
+              onChange={onChangeInputDisease}
+              placeholder="질환명을 입력해 주세요."
+            />
+            <div className="sarchButton">검색</div>
+          </div>
+        </div>
+        <div className="suggestDiseaseListContainer">
+          {suggestDiseaseList && (
+            <>
+              <span>추천 검색어</span>
+              <ul className="suggestDiseaseList">
+                {suggestDiseaseList?.map((disease: IDisease) => (
+                  <li key={disease.id}>{disease.name}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
