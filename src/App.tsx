@@ -1,6 +1,6 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Search from './components/Search.tsx';
+import Search from './components/Search/index.tsx';
 
 const queryClient = new QueryClient();
 
