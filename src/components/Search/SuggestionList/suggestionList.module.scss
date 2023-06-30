@@ -1,0 +1,14 @@
+.suggestDiseaseListContainer {
+  text-align: left;
+  width: 360px;
+  border-radius: 10px;
+
+  overflow: hidden;
+  padding: 16px;
+  background-color: var(--color-white);
+}
+
+.suggestDiseaseList {
+  overflow-y: scroll;
+  max-height: 200px;
+}
